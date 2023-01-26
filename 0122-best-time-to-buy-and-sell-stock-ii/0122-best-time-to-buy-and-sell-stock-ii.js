@@ -10,11 +10,6 @@ let increasing = arr2.sort((a,b)=>a-b);
 let profit=0;
 if(JSON.stringify(arr) == JSON.stringify(decreasing)){
     return 0;
-}else if(JSON.stringify(arr) == JSON.stringify(increasing)){
-    let max = arr[arr.length-1];
-    let min = arr[0];
-    profit =max-min;
-    return profit
 }else{
     for(let i=1;i<arr.length;i++){
         if(arr[i]>arr[i-1]){
