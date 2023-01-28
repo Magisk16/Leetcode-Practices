@@ -4,23 +4,22 @@
  */
 var isValidSudoku = function(arr) {
     let n =arr.length
-    let isUsedRow = new Array(n).fill(0).map(_ => new Array());
-    let isUsedCol = new Array(n).fill(0).map(_ => new Array());
-    let isUsedSub = new Array(n).fill(0).map(_ => new Array());
-
+    const row = {};
+    const col = {};
+    const box = {};
     for(let i=0;i<n;i++){
         for(let j=0;j<n;j++){
-            let num = arr[i][j];
-            if(num ===".") continue;
-            let subBoxIndex = Math.floor(i/3)+ Math.floor(j/3)*3;
-            if(isUsedRow[i][num] || isUsedCol[j][num]||isUsedSub[subBoxIndex][num]){
-                return false           
+            const num = arr[i][j];
+            if(num !=="."){
+            let subBoxIndex = Math.floor(i/3)*3+ Math.floor(j/3);
+            if(row[`${i}-${num}`] || col[`${j}-${num}`]|| box[`${subBoxIndex}-${num}`]){
+                return false;    
             }
-            
-            isUsedRow[i][num] =true;
-            isUsedCol[j][num] =true;
-            isUsedSub[subBoxIndex][num]=true;
+            row[`${i}-${num}`] =true;
+            col[`${j}-${num}`] =true;
+            box[`${subBoxIndex}-${num}`] =true;
         }
+    }
     }
     return true;
 };
